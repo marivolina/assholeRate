@@ -9,11 +9,41 @@ public class Dostov
   public int reasons;
   public int freq()
   {
-    if (raz/srok > 2) return 100;
-    //for ( ; raz/srok > reasons; )
-    else if (1 < raz/srok && raz/srok <= 2) return 50;
-      else if (0.6 < raz/srok && raz/srok <= 1) return 25;
-         else return 0;
+    if (raz/srok >= 1) return 100;
+    	else if (0.3 <= raz/srok && raz/srok < 1) return 50;
+      else if (0.16 < raz/srok && raz/srok < 0.3) return 25;
+      else return 0;
+  }
+}
+public class Deed
+{
+  public int intention;
+  public int raskayanie;
+  public int responsible;
+  public int future;
+  public int howBad()
+  {
+    return (intention + raskayanie + responsible + future)/4;
+  }
+}
+
+public class Danger
+{
+  public int hurt;
+  public int hurtFuture;
+  public int trauma()
+  {
+    return (hurt+hurtFuture)/2;
+  }
+}
+
+public class visionChange
+{
+  public int theOtherHand;
+  public int yourChange;
+  public int nextTime()
+  {
+    return -(theOtherHand + yourChange)/2;
   }
 }
 
@@ -21,19 +51,49 @@ class Program
 {
   static void Main (string [] args)
   {
-    Dostov bzik = new Dostov();
-    bzik.srok = 12;
-    bzik.raz = 24;
-    bzik.reasons = 70;
-    var res = (bzik.freq() + bzik.reasons)/2;
-    Console.WriteLine(res);
-    //string res = metod1();
+    Deed kosyak = new Deed();
+    //насколько он понимал, что это тебя заденет?
+    kosyak.intention = 90;
+    //он признал твое право на обиду?
+    kosyak.raskayanie = 35;     
+    //он признал свою ответственность, что сделал тебе больно?
+    kosyak.responsible = 0;
+    //он собирается и дальше так поступать?
+    kosyak.future = 90;
+    Console.WriteLine ("его поведение было на " + kosyak.howBad() + " % неприемлемо.");
+    //howBad = (intention + raskayanie + responsible + future)/4
+   
+    visionChange rethink = new visionChange();
+    //насколько ты сейчас готова понять его и признать, что он был прав?
+    rethink.theOtherHand = 40;
+    //если бы ситуация повторилась, насколько ты бы изменила свое поведение?
+    rethink.yourChange = 30;
     
-     
-    /*Chtoto stul = new Chtoto();
-    stul.Nazvanie = "stul";
-    stul.Prodaetsa = true;
-    stul.Price = 1500;
-    stul.Info();*/
+    Dostov opyt = new Dostov();
+    //как давно вы знакомы? (в месяцах)
+    opyt.srok = 2;
+    //сколько раз за это время он вел себя как мудак?
+    opyt.raz = 2;
+    //насколько вы знаете его мотивы, почему он так поступает?
+    opyt.reasons = 70;
+    //достоверность результат
+    var certain = (opyt.freq() + opyt.reasons + rethink.nextTime())/3;
+    Console.WriteLine("С достоверностью в " + certain + "%");
+    //var certain = (opyt.freq() + opyt.reasons + rethink.nextTime())/3;  
+    Console.WriteLine("freq =" + opyt.freq());
+    /* if (raz/srok >= 1) return 100;
+    	else if (0.3 <= raz/srok && raz/srok < 1) return 50;
+      else if (0.16 < raz/srok && raz/srok < 0.3) return 25;
+      else return 0;*/
+       
+    Danger pain = new Danger ();
+    //насколько это было больно?
+    pain.hurt = 55;
+    //насколько больно это было бы во второй раз?
+    pain.hurtFuture = 20;
+    Console.WriteLine ("его следующий косяк ранит тебя на " + pain.trauma() + "%.");
+    //trauma = (hurt+hurtFuture)/2
+
+    
   }
 }
