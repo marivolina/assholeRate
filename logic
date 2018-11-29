@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+			
+public class Dostov
+{
+  public int srok;
+  public int raz;
+  public int reasons;
+  public int freq;
+  public string metod1(int x)
+  {
+    if (raz/srok > 2) return "100%";
+    //for ( ; raz/srok > reasons; )
+    else if (1 < raz/srok && raz/srok <= 2) return "50%";
+      else if (0.6 < raz/srok && raz/srok <= 1) return "25%";
+         else return "0%";
+  }
+}
+
+public class Chtoto
+{
+  public string Nazvanie;
+  public bool Prodaetsa;
+  public int Price;
+  
+  public void Info()
+  {
+    Console.WriteLine(Nazvanie + " " + Prodaetsa + " " + Price);
+  }
+}
+
+class Program 
+{
+  static void Main (string [] args)
+  {
+    Ktoto andy = new Ktoto();
+    andy.Name = "Andy";
+    andy.Otchestvo = "Dandy";
+    andy.Age = 23;
+    andy.Spravka();
+    
+    Chtoto stul = new Chtoto();
+    stul.Nazvanie = "stul";
+    stul.Prodaetsa = true;
+    stul.Price = 1500;
+    stul.Info();
+  }
+}
