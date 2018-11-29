@@ -7,26 +7,13 @@ public class Dostov
   public int srok;
   public int raz;
   public int reasons;
-  public int freq;
-  public string metod1(int x)
+  public int freq()
   {
-    if (raz/srok > 2) return "100%";
+    if (raz/srok > 2) return 100;
     //for ( ; raz/srok > reasons; )
-    else if (1 < raz/srok && raz/srok <= 2) return "50%";
-      else if (0.6 < raz/srok && raz/srok <= 1) return "25%";
-         else return "0%";
-  }
-}
-
-public class Chtoto
-{
-  public string Nazvanie;
-  public bool Prodaetsa;
-  public int Price;
-  
-  public void Info()
-  {
-    Console.WriteLine(Nazvanie + " " + Prodaetsa + " " + Price);
+    else if (1 < raz/srok && raz/srok <= 2) return 50;
+      else if (0.6 < raz/srok && raz/srok <= 1) return 25;
+         else return 0;
   }
 }
 
@@ -34,16 +21,19 @@ class Program
 {
   static void Main (string [] args)
   {
-    Ktoto andy = new Ktoto();
-    andy.Name = "Andy";
-    andy.Otchestvo = "Dandy";
-    andy.Age = 23;
-    andy.Spravka();
+    Dostov bzik = new Dostov();
+    bzik.srok = 12;
+    bzik.raz = 24;
+    bzik.reasons = 70;
+    var res = (bzik.freq() + bzik.reasons)/2;
+    Console.WriteLine(res);
+    //string res = metod1();
     
-    Chtoto stul = new Chtoto();
+     
+    /*Chtoto stul = new Chtoto();
     stul.Nazvanie = "stul";
     stul.Prodaetsa = true;
     stul.Price = 1500;
-    stul.Info();
+    stul.Info();*/
   }
 }
