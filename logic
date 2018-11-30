@@ -4,14 +4,16 @@ using System.Linq;
 			
 public class Dostov
 {
-  public int srok;
-  public int raz;
+  public double srok;
+  public double raz;
   public int reasons;
+  public double chastota;
   public int freq()
   {
-    if (raz/srok >= 1) return 100;
-    	else if (0.3 <= raz/srok && raz/srok < 1) return 50;
-      else if (0.16 < raz/srok && raz/srok < 0.3) return 25;
+    chastota = raz/srok;
+    if (chastota >= 1) return 100;
+    	else if (0.3 <= chastota && chastota < 1) return 50;
+      else if (0.16 < chastota && chastota < 0.3) return 25;
       else return 0;
   }
 }
@@ -71,20 +73,20 @@ class Program
     
     Dostov opyt = new Dostov();
     //как давно вы знакомы? (в месяцах)
-    opyt.srok = 2;
+    opyt.srok = 6;
     //сколько раз за это время он вел себя как мудак?
-    opyt.raz = 2;
+    opyt.raz = 1;
     //насколько вы знаете его мотивы, почему он так поступает?
     opyt.reasons = 70;
     //достоверность результат
     var certain = (opyt.freq() + opyt.reasons + rethink.nextTime())/3;
     Console.WriteLine("С достоверностью в " + certain + "%");
-    //var certain = (opyt.freq() + opyt.reasons + rethink.nextTime())/3;  
-    Console.WriteLine("freq =" + opyt.freq());
-    /* if (raz/srok >= 1) return 100;
-    	else if (0.3 <= raz/srok && raz/srok < 1) return 50;
-      else if (0.16 < raz/srok && raz/srok < 0.3) return 25;
-      else return 0;*/
+
+    /*  opyt.freq() {  chastota = raz/srok;
+    if (chastota >= 1) return 100;
+    	else if (0.3 <= chastota && chastota < 1) return 50;
+      else if (0.16 < chastota && chastota < 0.3) return 25;
+      else return 0;}*/
        
     Danger pain = new Danger ();
     //насколько это было больно?
