@@ -4,102 +4,117 @@ using System.Linq;
 			
 public class Dostov
 {
-  public double srok;
-  public double raz;
-  public int reasons;
-  public double chastota;
-  public int freq()
-  {
-    chastota = raz/srok;
-    if (chastota >= 1) return 100;
-    	else if (0.3 <= chastota && chastota < 1) return 50;
-      else if (0.16 < chastota && chastota < 0.3) return 25;
-      else return 0;
-  }
+    public double srok;
+    public double raz;
+    public int reasons;
+    public double chastota;
+    public int freq()
+    {
+        chastota = raz / srok;
+        if (chastota >= 1) return 100;
+        else if (0.3 <= chastota && chastota < 1) return 50;
+        else if (0.16 < chastota && chastota < 0.3) return 25;
+        else return 0;
+    }
 }
 public class Deed
 {
-  public int intention;
-  public int raskayanie;
-  public int responsible;
-  public int future;
-  public int howBad()
-  {
-    return (intention + raskayanie + responsible + future)/4;
-  }
+    public int intention;
+    public int raskayanie;
+    public int responsible;
+    public int future;
+    public int howBad()
+    {
+        return (intention + raskayanie + responsible + future) / 4;
+    }
 }
 
 public class Danger
 {
-  public int hurt;
-  public int hurtFuture;
-  public int bolno;
-  public void trauma()
-  {
-    bolno = (hurt+hurtFuture)/2; 
-    if (bolno >=70) Console.WriteLine("Он может снова сделать тебе больно на " + bolno + "%. Это слишком. Лучше береги себя, избегай этого человека.");
-    else if (40 <= bolno && bolno < 70) Console.WriteLine("Он может снова сделать тебе больно на " + bolno + "%. Хотя ты перенесешь это легче, чем в первый раз.");
-    else Console.WriteLine("Он может снова сделать тебе больно на " + bolno + "%. Он уже не ранит тебя, как в прошлый раз. Так что бояться нечего.");
-  }
+    public int hurt;
+    public int hurtFuture;
+    public int bolno;
+    public void trauma()
+    {
+        bolno = (hurt + hurtFuture) / 2;
+        if (bolno >= 70) Console.WriteLine("Он может снова сделать тебе больно на " + bolno + "%. Это слишком. Лучше береги себя, избегай этого человека.");
+        else if (40 <= bolno && bolno < 70) Console.WriteLine("Он может снова сделать тебе больно на " + bolno + "%. Хотя ты перенесешь это легче, чем в первый раз.");
+        else Console.WriteLine("Он может снова сделать тебе больно на " + bolno + "%. Он уже не ранит тебя, как в прошлый раз. Так что бояться нечего.");
+    }
 }
 
 public class visionChange
 {
-  public int theOtherHand;
-  public int yourChange;
-  public int nextTime()
-  {
-    return (theOtherHand + yourChange)/2;
-  }
+    public int theOtherHand;
+    public int yourChange;
+    public int nextTime()
+    {
+        return (theOtherHand + yourChange) / 2;
+    }
 }
 
-class Program 
+class Program
 {
-  static void Main (string [] args)
-  {
-    Deed kosyak = new Deed();
-    //насколько человек понимал, что это тебя заденет?
-    kosyak.intention = 70;
-    //насколько он признал твое право на обиду?
-    kosyak.raskayanie = 15;     
-    //насколько он признал свою ответственность, что сделал тебе больно?
-    kosyak.responsible = 0;
-    //насколько он собирается и дальше так поступать?
-    kosyak.future = 80;
-    Console.WriteLine ("Этот человек уверен в своей правоте на " + kosyak.howBad() + " %.");
-    //howBad = (intention + raskayanie + responsible + future)/4
-   
-    visionChange rethink = new visionChange();
-    //насколько ты сейчас готова понять его и признать, что он был прав?
-    rethink.theOtherHand = 100 - 50;
-    //если бы ситуация повторилась, насколько бы ты действовала так же?
-    rethink.yourChange = 30;
-    
-    Dostov opyt = new Dostov();
-    //как давно вы знакомы? (в месяцах)
-    opyt.srok = 144;
-    //сколько раз за это время он вел себя, как мудак?
-    opyt.raz = 5;
-    //насколько ты знаешь его мотивы, почему он так поступает?
-    opyt.reasons = 90;
-    //достоверность результат
-    var certain = (opyt.freq() + opyt.reasons + rethink.nextTime())/3;
-    Console.WriteLine(opyt.freq() + " " + opyt.reasons + " " + rethink.nextTime() + " Вероятность того, что он и дальше будет вести себя как мудак, " + certain + " %.");
+    static void Main(string[] args)
+    {
+        Deed kosyak = new Deed();
+        Console.WriteLine("насколько человек понимал, что это тебя заденет?");
+        var input = Console.ReadLine();
+        kosyak.intention = Convert.ToInt32(input);
 
-    /*  opyt.freq() {  chastota = raz/srok;
-    if (chastota >= 1) return 100;
-    	else if (0.3 <= chastota && chastota < 1) return 50;
-      else if (0.16 < chastota && chastota < 0.3) return 25;
-      else return 0;}*/
-       
-    Danger pain = new Danger ();
-    //насколько это было больно?
-    pain.hurt = 70;
-    //насколько больно это было бы во второй раз?
-    pain.hurtFuture = 20;
-    pain.trauma();
-		//trauma = (hurt+hurtFuture)/2
+        Console.WriteLine("насколько он признал твое право на обиду?");
+        var input2 = Console.ReadLine();
+        kosyak.raskayanie = 100 - Convert.ToInt32(input2);
 
-    
-  }
+        Console.WriteLine("насколько он признал свою ответственность, что сделал тебе больно?");
+        var input3 = Console.ReadLine();
+        kosyak.responsible = 100 - Convert.ToInt32(input3);
+
+        Console.WriteLine("насколько он собирается и дальше так поступать?");
+        var input4 = Console.ReadLine();
+        kosyak.future = Convert.ToInt32(input4);
+        Console.WriteLine("Этот человек уверен в своей правоте на " + kosyak.howBad() + " %.");
+        //howBad = (intention + raskayanie + responsible + future)/4
+
+        visionChange rethink = new visionChange();
+        Console.WriteLine("насколько ты сейчас готова понять его и признать, что он был прав?");
+        var input5 = Console.ReadLine();
+        rethink.theOtherHand = 100 - Convert.ToInt32(input5);
+        Console.WriteLine("если бы ситуация повторилась, насколько бы ты действовала так же?");
+        var input6 = Console.ReadLine();
+        rethink.yourChange = Convert.ToInt32(input6);
+
+        Dostov opyt = new Dostov();
+        Console.WriteLine("как давно вы знакомы? (в месяцах)");
+        var input7 = Console.ReadLine();
+        opyt.srok = Convert.ToInt32(input7);
+        Console.WriteLine("сколько раз за это время он вел себя, как мудак?");
+        var input8 = Console.ReadLine();
+        opyt.raz = Convert.ToInt32(input8);
+        Console.WriteLine("насколько ты знаешь его мотивы, почему он так поступает?");
+        var input9 = Console.ReadLine();
+        opyt.reasons = Convert.ToInt32(input9);
+        //достоверность результат
+        var certain = (opyt.freq() + opyt.reasons + rethink.nextTime()) / 3;
+        Console.WriteLine(" Вероятность того, что он и дальше будет вести себя как мудак, " + certain + " %.");
+
+        /*  opyt.freq() {  chastota = raz/srok;
+        if (chastota >= 1) return 100;
+            else if (0.3 <= chastota && chastota < 1) return 50;
+          else if (0.16 < chastota && chastota < 0.3) return 25;
+          else return 0;}*/
+
+        Danger pain = new Danger();
+        Console.WriteLine("насколько это было больно?");
+        var input10 = Console.ReadLine();
+        pain.hurt = Convert.ToInt32(input10);
+        Console.WriteLine("насколько больно это было бы во второй раз?");
+        var input11 = Console.ReadLine();
+        pain.hurtFuture = Convert.ToInt32(input11);
+        pain.trauma();
+        //trauma = (hurt+hurtFuture)/2
+
+
+    }
 }
+
