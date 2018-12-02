@@ -59,41 +59,32 @@ class Program
     {
         Deed kosyak = new Deed();
         Console.WriteLine("насколько человек понимал, что это тебя заденет?");
-        var input = Console.ReadLine();
-        kosyak.intention = Convert.ToInt32(input);
+        kosyak.intention = Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine("насколько он признал твое право на обиду?");
-        var input2 = Console.ReadLine();
-        kosyak.raskayanie = 100 - Convert.ToInt32(input2);
+        kosyak.raskayanie = 100 - Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine("насколько он признал свою ответственность, что сделал тебе больно?");
-        var input3 = Console.ReadLine();
-        kosyak.responsible = 100 - Convert.ToInt32(input3);
+        kosyak.responsible = 100 - Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine("насколько он собирается и дальше так поступать?");
-        var input4 = Console.ReadLine();
-        kosyak.future = Convert.ToInt32(input4);
+        kosyak.future = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("Этот человек уверен в своей правоте на " + kosyak.howBad() + " %.");
         //howBad = (intention + raskayanie + responsible + future)/4
 
         visionChange rethink = new visionChange();
         Console.WriteLine("насколько ты сейчас готова понять его и признать, что он был прав?");
-        var input5 = Console.ReadLine();
-        rethink.theOtherHand = 100 - Convert.ToInt32(input5);
+        rethink.theOtherHand = 100 - Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("если бы ситуация повторилась, насколько бы ты действовала так же?");
-        var input6 = Console.ReadLine();
-        rethink.yourChange = Convert.ToInt32(input6);
+        rethink.yourChange = Convert.ToInt32(Console.ReadLine());
 
         Dostov opyt = new Dostov();
         Console.WriteLine("как давно вы знакомы? (в месяцах)");
-        var input7 = Console.ReadLine();
-        opyt.srok = Convert.ToInt32(input7);
+        opyt.srok = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("сколько раз за это время он вел себя, как мудак?");
-        var input8 = Console.ReadLine();
-        opyt.raz = Convert.ToInt32(input8);
+        opyt.raz = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("насколько ты знаешь его мотивы, почему он так поступает?");
-        var input9 = Console.ReadLine();
-        opyt.reasons = Convert.ToInt32(input9);
+        opyt.reasons = Convert.ToInt32(Console.ReadLine());
         //достоверность результат
         var certain = (opyt.freq() + opyt.reasons + rethink.nextTime()) / 3;
         Console.WriteLine(" Вероятность того, что он и дальше будет вести себя как мудак, " + certain + " %.");
@@ -106,15 +97,12 @@ class Program
 
         Danger pain = new Danger();
         Console.WriteLine("насколько это было больно?");
-        var input10 = Console.ReadLine();
-        pain.hurt = Convert.ToInt32(input10);
+        pain.hurt = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("насколько больно это было бы во второй раз?");
-        var input11 = Console.ReadLine();
-        pain.hurtFuture = Convert.ToInt32(input11);
+        pain.hurtFuture = Convert.ToInt32(Console.ReadLine());
         pain.trauma();
         //trauma = (hurt+hurtFuture)/2
 
 
     }
 }
-
